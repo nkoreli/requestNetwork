@@ -97,7 +97,12 @@ export async function sendBatchPaymentsToHinkalShieldedAddressesFromPublic(
   });
   const amountsToPay = amounts.map((amount) => BigNumber.from(amount).toBigInt());
 
-  console.log({ tokens, amountsToPay, recipientInfos });
+  console.log({
+    tokens,
+    amountsToPay,
+    recipientInfos,
+    ethAddress: await hinkalObject.getEthereumAddress(),
+  });
 
   const tx = await hinkalObject.multiSendPrivateRecipients(tokens, amountsToPay, recipientInfos);
   return tx;
